@@ -37,7 +37,7 @@ export default function Category({ products }: CategoryProps) {
 
 // to dynamic static pages
 export const getStaticPaths: GetStaticPaths = async () => {
-	const response = await fetch('http://localhost:3333/categories');
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API}/categories`);
   const categories = await response.json();
   
   const paths = categories.map(category => {
@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<CategoryProps> = async (context) => {
   const { slug } = context.params
 
-	const response = await fetch(`http://localhost:3333/products?category_id=${slug}`);
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API}/products?category_id=${slug}`);
 	const products = await response.json();
 
 	return {
