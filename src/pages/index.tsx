@@ -1,9 +1,9 @@
-import Head from 'next/head'
+import { Title } from '../styles/pages/Home'
 
 export default function Home() {
   return (
     <div>
-      <h1>Nexjs</h1>
+      <Title>Nexjs</Title>
     </div>
   )
 }
