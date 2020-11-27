@@ -32,4 +32,27 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-##
+## About project
+
+### Styled components
+
+Por padrão o SSR não funciona para essa biblioteca, sendo necessário adicionar configurações adicionais.
+
+Em um arquivo `babel.config.js`:
+
+```js
+module.exports = {
+  presets: ['next/babel'],
+  plugins: [['styled-components', { ssr: true }]],
+};
+```
+
+Instale: `yarn add babel-plugin-styled-components -D`
+
+É necessário também adicionar algumas configurações do _styled-component_ no arquivo `_document.js || _document.tsx`
+
+Mais informações na documentação do _styled-components_ e em no GitHub da Vercel:
+
+[Docs about SSR](https://styled-components.com/docs/advanced#server-side-rendering)
+
+[GitHub Vercel about styled-components](https://github.com/vercel/next.js/tree/master/examples/with-styled-components)
