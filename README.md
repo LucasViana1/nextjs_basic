@@ -34,6 +34,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## About project
 
+### Run fake API
+
+```bash
+yarn backend #custom script
+#or
+yarn json-server server.json -p 3333 -w
+```
+
 ### Styled components
 
 Por padrão o SSR não funciona para essa biblioteca, sendo necessário adicionar configurações adicionais.
@@ -56,3 +64,15 @@ Mais informações na documentação do _styled-components_ e em no GitHub da Ve
 [Docs about SSR](https://styled-components.com/docs/advanced#server-side-rendering)
 
 [GitHub Vercel about styled-components](https://github.com/vercel/next.js/tree/master/examples/with-styled-components)
+
+### Data consumption strategies
+
+- Client Side Fetching: nessa abordagem o consumo da API ocorre após a renderização do componente.
+  - Vantagem: TTFB (Time to first byte) menor, melhor para a experiência do usuário.
+  - Desvantagem: os elementos construidos com base nos dados retornados da API não são considerados nos motores de busca
+- Server Side Rendering: nessa abordagem o consumo da API ocorre na camada do servidor, antes de renderizar o conteúdo visual na tela.
+  - Vantagem: uma das melhores escolha para motores de busca, pois exibe os elementos gerados pelas informações buscadas na API ja com seus elementos montados pelo servidor (a página não é construida pelo cliente com js, conforme é feito pelo Client Side Fetching).
+  - Desvantagem: aumenta consideravelmente o TTFB, o que pode demorar para exibir os primeiros elementos na tela do usuário.
+- Static Site Generation: dessa forma as informações buscadas são servidas de forma estática.
+  - Vantagem: maior performance, pois ja constroi a página de forma estática e o cliente simplesmente o exibe (geração de página ocorre no build da aplicação e não na requisição do cliente).
+  - Desvantagem: Se existirem muitas páginas que foram configuradas para serem exibidas de forma estática o build do projeto pode ficar extremamente pesado, o _fallback_ pode ser usado para auxiliar nesse problema.
